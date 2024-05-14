@@ -41,4 +41,53 @@ p{
     font-weight: 500;
     color: grey;
 }
+
+.center{
+
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding:20px ;
+    border-top:1px solid #dddddd35 ;
+    gap: 20px;
+
+    .icons{
+       display: flex;
+       gap: 10px; 
+
+       img{
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        border-radius: 0px;
+       }
+    }
+
+    input{
+        flex: 1;
+        background-color: rgba(17, 25, 40, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        font-size: 16px;
+        border: none;
+        outline: none;
+        color: white;
+    }
+
+    .sendButton{
+        background-color: rgb(77, 77, 239);
+        color: white;
+        padding: 10px;
+        font-weight: 500;
+        font-size: 15px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+
+}
 }
