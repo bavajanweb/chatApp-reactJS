@@ -68,9 +68,36 @@ p{
                padding: 7px;
                border-radius: 5px;
                font-weight: 400;
+
             }
         }
      }
+
+     img{
+       width: 30px;
+       height: 30px;
+       object-fit: cover; 
+     }
+
+     .texts{
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        p{
+            padding: 7px;
+            background-color: #dddddd35;
+            color: white;
+            border-radius: 5px;
+            font-weight: 400;
+        }
+        span{
+            font-size: 10px;
+            font-weight: 400;
+        }
+     }
+
 
     }
 

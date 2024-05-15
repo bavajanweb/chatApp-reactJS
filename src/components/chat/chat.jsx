@@ -1,11 +1,17 @@
 import './chat.css'
 import EmojiPicker from 'emoji-picker-react'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 const Chat = () => {
 
     const [open, setOpen] = React.useState(false)
     const [text, setText] = React.useState("")
+
+    const endRef = useRef(null)
+
+    useEffect(()=>{
+        endRef.current?.scrollIntoView({behavior: "smooth"})
+    })
 
     const emojiHandle = (e) => {
         setText((prev) => prev + e.emoji)
@@ -30,7 +36,7 @@ const Chat = () => {
 
             <div className="center">
                 <div className="message">
-                    <img src='./avatar.png'/>
+                    <img src='./avatar.png' />
                     <div className="texts">
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi voluptatum omnis, modi iure fuga culpa dolores ad soluta aliquam optio.
@@ -50,7 +56,7 @@ const Chat = () => {
 
 
                 <div className="message">
-                    <img src='./avatar.png'/>
+                    <img src='./avatar.png' />
                     <div className="texts">
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi voluptatum omnis, modi iure fuga culpa dolores ad soluta aliquam optio.
@@ -69,7 +75,7 @@ const Chat = () => {
                 </div>
 
                 <div className="message">
-                    <img src='./avatar.png'/>
+                    <img src='./avatar.png' />
                     <div className="texts">
                         <p>
                             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quasi voluptatum omnis, modi iure fuga culpa dolores ad soluta aliquam optio.
@@ -87,6 +93,7 @@ const Chat = () => {
                     </div>
                 </div>
 
+                <div ref={endRef}></div>
             </div>
 
             <div className="bottom">

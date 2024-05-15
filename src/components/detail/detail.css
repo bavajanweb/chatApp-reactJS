@@ -1,4 +1,114 @@
-detail{
-    flex: 3;
-    
+.detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
+   
+
+    .user {
+        padding: 30px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        border-radius: 1px solid #dddddd35;
+
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    }
+
+    .info {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        button{
+            padding: 10px 20px;
+            background-color: rgb(252, 41, 41);
+            color: white;
+            cursor: pointer;
+            font-weight: 500;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+            font-size: 15px;
+
+            &:hover{
+                background-color: rgb(194, 10, 10);
+            }
+
+            &.logOut{
+                background-color: rgb(68, 68, 240);
+            }
+
+            &.logOut:hover{
+                background-color: blue;
+            }
+        }
+
+        .option {
+
+            .title {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                img {
+                    width: 10px;
+                    height: 10px;
+                    background-color: rgba(17, 25, 40, 0.3);
+                    padding: 10px;
+                    border-radius: 50%;
+                    cursor: pointer;
+                }    
+            }
+
+            .photos {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                padding: 10px;
+
+                img{
+                    width: 20px;
+                    height: 20px;
+                }
+
+                .photoItem {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .download{
+                        width: 25px;
+                        height: 25px;
+                        background-color: rgb(17, 25, 40, 0.3);
+                        padding: 10px;
+                        border-radius: 50px;
+                        cursor: pointer;
+                    }
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                    }
+
+                    span{
+                        font-size: 13px;
+                        color: rgb(198, 197, 197);
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.detail::-webkit-scrollbar{
+    display: none;
 }
