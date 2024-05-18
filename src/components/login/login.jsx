@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './login.css'
 import { toast } from 'react-toastify'
 import {createUserWithEmailAndPassword} from 'firebase/auth'
-import {auth} from '../../library/firebase'
+import {auth, db} from '../../library/firebase'
+import {doc, setDoc} from 'firebase/firestore'
 
 
 
@@ -33,6 +34,16 @@ const Login = () => {
         try {
 
             const res = await createUserWithEmailAndPassword(auth,email,password)
+
+            await setDoc(doc(db, "users", res.user.uid),{
+                username,
+                email,
+                id: res.user.uid,
+                blocked: [],
+
+            })
+
+            toast.success("Account Created! you can login now")
             
         } catch (err) {
             console.log(err)
