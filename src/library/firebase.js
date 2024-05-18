@@ -1,12 +1,12 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
+
+import  {initializeApp} from "firebase/app";
 import {getAuth} from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore'
-import {getStorage}  from './firebase/storage'
-// TODO: Add SDKs for Firebase products that you want to use
+import {getStorage} from  'firebase/storage'
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_API_KEY,
+  apiKey: "AIzaSyCORzS8RdOBnNFPnp4miuiD_nywKbSygAk",
   authDomain: "react-chatapp-7dfe3.firebaseapp.com",
   projectId: "react-chatapp-7dfe3",
   storageBucket: "react-chatapp-7dfe3.appspot.com",
@@ -16,7 +16,6 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth()
 const db = getFirestore()
 const storage = getStorage()
