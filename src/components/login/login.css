@@ -59,6 +59,11 @@
                font-weight: 500;
                font-size: 15px;
 
+               &:disabled{
+                cursor: not-allowed;
+                background-color: rgba(58, 58, 239, 0.322);
+               }
+
             }
         }
     }
