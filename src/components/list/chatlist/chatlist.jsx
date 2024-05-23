@@ -2,7 +2,7 @@ import './chatlist.css'
 import React, { useEffect } from 'react'
 import AddUser from './addUser/addUser'
 import { useUserStore } from '../../../library/userStore'
-import { doc, onSnapshot } from "firebase/firestore";
+import { doc, onSnapshot, getDoc} from "firebase/firestore";
 import { db } from '../../../library/firebase';
 
 
@@ -12,14 +12,26 @@ const ChatList = () =>{
     const {currentUser} = useUserStore()
 
     useEffect(()=>{
-        const unSub = onSnapshot(doc(db, "userchats", currentUser.id), (doc) => {
-            setChats(doc.data());
+        const unSub = onSnapshot(doc(db, "userchats", currentUser.id), 
+        async(res) => {
+            const items = res.data().chats
+            const promises = items.map(async(item)=>{
+                const userDocRef = doc(db, "users", item.receiverId)
+                const userDocSnap = await getDoc(userDocRef)
+
+                const user = userDocSnap.data()
+                return {...item, user}
+
+            })
+            const chatData = await Promise.all(promises)
+
+            setChats(chatData.sort((a,b)=>b.updatedAt - a.updatedAt))
           });
           return()=>{
             unSub()
           }
     },[currentUser.id])
-    console.log(chats)
+
     return(
         <div className="chatlist">
            <div className="search">
@@ -30,7 +42,7 @@ const ChatList = () =>{
             <img src={addMode ? './plus.png' : './minus.png'} className='add' onClick={()=> setAddMode((prev) => !prev)}/>
            </div>
 
-        {chats.map((chat)=>(
+        {Array.isArray(chats) && chats?.map((chat)=>(
            <div className="item" key={chat.chatId}>
             <img src='./avatar.png'/>
             <div className="texts">

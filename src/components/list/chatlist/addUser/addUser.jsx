@@ -1,20 +1,50 @@
+import { collection, getDocs, where, query, doc } from 'firebase/firestore'
+import { db } from '../../../../library/firebase'
 import './addUser.css'
+import { useState } from 'react'
 
 
-const AddUser = () =>{
-    return(
+const AddUser = () => {
+
+    const [user, setUser] = useState(null)
+
+    const handleSearch = async (e) => {
+        e.preventDefault()
+        const formData = new FormData(e.target)
+        const username = formData.get("username")
+
+        try {
+
+            const userRef = collection(db, "users")
+            const q = query(userRef, where("username", "==", username))
+            const querySnapShot = await getDocs(q)
+           
+
+            if (!querySnapShot.empty) {
+                setUser(querySnapShot.docs[0].data())
+            }
+
+
+        } catch (error) {
+            console.log(error)
+
+
+        }
+
+    }
+    return (
         <div className="addUser">
-        <forn>
-            <input type='text' placeholder='search'/>
-            <button>Search</button>
-        </forn>
-        <div className="user">
-            <div className="detail">
-                <img img='./pic.jpg'/>
-                <span>John Doe</span>  
-            </div>
-            <button>Add User</button>
-        </div>
+            <form onSubmit={handleSearch}>
+                <input type='text' placeholder='Username' name='username'/>
+                <button>Search</button>
+            </form>
+            {user && <div className="user">
+                <div className="detail">
+                    <img src={user.avatar || './avatar.png'} />
+                    <span>{user.username}</span>
+                </div>
+                <button>Add User</button>
+            </div>}
         </div>
     )
 }
