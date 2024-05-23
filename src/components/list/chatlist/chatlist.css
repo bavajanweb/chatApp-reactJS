@@ -15,7 +15,7 @@
 
     .searchBar{
         display: flex;
-        background-color: rgba(17, 25, 40, 0.5);
+        background-color: rgba(6, 9, 14, 0.5);
         align-items: center;
         gap: 20px;
         border-radius: 10px;
@@ -26,6 +26,7 @@
         color: white;
         border: none;
         outline: none;
+        padding: 7px;
     }
 
     .add{
@@ -38,6 +39,7 @@
     
     img{
         width: 20px;
+        margin-left: 10px;
     }
 
     

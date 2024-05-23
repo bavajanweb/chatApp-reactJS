@@ -39,14 +39,14 @@ const ChatList = () =>{
                 <img src='./search.png'/>
                 <input type='text' placeholder='Search'/>
             </div>
-            <img src={addMode ? './plus.png' : './minus.png'} className='add' onClick={()=> setAddMode((prev) => !prev)}/>
+            <img src={addMode ? './minus.png' : './plus.png'} className='add' onClick={()=> setAddMode((prev) => !prev)}/>
            </div>
 
         {Array.isArray(chats) && chats?.map((chat)=>(
            <div className="item" key={chat.chatId}>
-            <img src='./avatar.png'/>
+            <img src={chat.user.avatar || './avatar.png'}/>
             <div className="texts">
-                <span>Jane Doe</span>
+                <span>{chat.user.username}</span>
                 <p>{chat.lastMessage}</p>
             </div>
            </div>
