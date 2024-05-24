@@ -9,11 +9,13 @@ import Notification from './components/notification/notification';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './library/firebase';
 import { useUserStore } from './library/userStore';
+import { useChatStore } from './library/chatStore';
 
 
 function App() {
 
   const {fetchUserInfo, currentUser, isLoading } = useUserStore()
+  const {chatId} = useChatStore()
 
 useEffect(()=>{
   const unSub = onAuthStateChanged(auth,(user)=>{
@@ -32,8 +34,8 @@ if(isLoading) return <div className='loading'>Loading...</div>
     <div className="container">
       {currentUser ? (<>
       <List/>
-     <Chat/>
-     <Detail/>
+     {chatId && <Chat/>}
+     {chatId && <Detail/>}
      </>) : (<Login/>)}
 
       <Notification/>
